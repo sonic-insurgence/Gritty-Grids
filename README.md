@@ -13,25 +13,25 @@ MIDI master device, the master does not cease sending MIDI Clocks
 drumming forever.
 
 The "Gritty Grids" firmware improves on this situation by properly 
-reacting to all MIDI Start, Stop, Continue and Clock messages.
-
-[![Gritty Grids demo](https://youtu.be/vbTWLX3Ts00)](https://www.youtube.com/watch?v=vbTWLX3Ts00)
+reacting to all MIDI Start, Stop, Continue and Clock messages. See 
+the [Gritty Grids demo video](https://youtu.be/vbTWLX3Ts00) on YouTube.
 
 ### A MIDI Interface for Grids
 Fortunately Grids offers three pads on the back of its printed circuit 
 board that are waiting to become a MIDI IN interface.
 
-[Grids MIDI port](sonic-insurgence.github.com/Gritty-Grids/images/grids-midi-port.jpg)
+![Grids MIDI port](/images/grids-midi-port.jpg)
 
 Just connect the following simple circuit. It can easily be built on a 
 prototyping board.
 
-[MIDI circuit](sonic-insurgence.github.com/Gritty-Grids/images/midi-circuit.jpg)
+![MIDI circuit](/images/midi-circuit.jpg)
 
 As a quick hack you might even succeed if you only take a 5-pin female 
 DIN jack making the following connections:
 * pin 2 (shield / ground) to Grids GND
 * pin 5 (current sink) to Grids RX>
+
 But beware: This is a hack. It DOES NOT COMPLY with the specification 
 of the MIDI standard. You lose the galvanic isolation of the MIDI 
 interface. It might or might not work. Try at your own risk.
@@ -64,19 +64,19 @@ They now assume a "mute" functionality that suppresses all drum and
 accent outputs. When muted all three output leds will light up 
 permanently.
 
-To leave the "clocked_by_midi" mode turn the tempo knob to the right 
+To leave the "clocked_by_midi" mode, turn the tempo knob to the right 
 to activate internal clocking.
 
-Note: I also disabled the retriggering of the outputs when a signal 
-at the reset input has been received. This avoids double trigger 
-glitches.
+Besides the MIDI stuff I also disabled retriggering of the outputs 
+when a signal at the reset input has been received. This avoids 
+the annoying double triggers.
 
 
 ### Syncing other modules
 If you have a sequencer module in your rack you might want to set the 
 outputs configuration of Grids to ACC / CLK / RST. This gives you a 
-clock and reset output to sync the sequencer to Grids and thereby to 
-your MIDI master device.
+clock and reset output which you can use to sync the sequencer to 
+Grids and thereby to your MIDI master device.
 
 
 ### Website
@@ -84,8 +84,8 @@ Original Grids website: https://mutable-instruments.net/modules/grids/
 
 
 ### Author
-Author of the original Grids project is Émilie Gillet.
-Author of the Gritty Grids modification is Sonic Insurgence.
+* Author of the original Grids project is Émilie Gillet.
+* Author of the Gritty Grids modification is Sonic Insurgence.
 
 
 ### License
