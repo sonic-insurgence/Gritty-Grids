@@ -67,9 +67,15 @@ permanently.
 To leave the "clocked_by_midi" mode, turn the tempo knob to the right 
 to activate internal clocking.
 
+
+### Other Changes
 Besides the MIDI stuff I also disabled retriggering of the outputs 
 when a signal at the reset input has been received. This avoids 
 the annoying double triggers.
+
+Finally I increased the duration of the trigger pulses from 1 ms to 
+5 ms as there are other Eurorack modules that are reported to have 
+troubles recognizing the short trigger pulses.
 
 
 ### Syncing other modules
