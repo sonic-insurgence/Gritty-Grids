@@ -1,0 +1,6 @@
+Fuse settings for Mutable Instruments Grids
+
+LFUSE          = ff
+HFUSE          = d8
+EFUSE          = 05
+LOCK           = 2f
