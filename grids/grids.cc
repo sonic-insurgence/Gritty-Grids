@@ -79,7 +79,9 @@ volatile bool long_press_detected = false;
 const uint8_t kUpdatePeriod = F_CPU / 32 / 8000;
 
 uint8_t clocked_by_midi = 0;  // 1 = MIDI Clock advances Grids, 2 = MIDI Stop received
-uint8_t mute = 0;       // 1 = drum and accent outputs are muted
+uint8_t mute = 0;             // 1 = drum and accent outputs are muted
+uint8_t external_clock = 0;   // 1 = Grids is in external clock mode (clock knob = min,
+                              // accept pulses on clock input or by midi clock messages)
 
 inline void UpdateLeds() {
   uint8_t pattern;
@@ -182,6 +184,10 @@ inline void HandleClockResetInputs() {
   
   // CLOCK
   if (clock.bpm() < 40 && !clock.locked()) {
+    if (!external_clock) {
+      external_clock = 1;
+      mute = 1;			// activate mute when entering external clock mode
+    }
     if ((inputs_value & INPUT_CLOCK) && !(previous_inputs & INPUT_CLOCK)) {
       if (!clocked_by_midi) {
         num_ticks = increment;
@@ -209,6 +215,11 @@ inline void HandleClockResetInputs() {
       }
     }
   } else {
+    if (external_clock) {
+      external_clock = 0;
+      mute = 0;			// deactivate mute when leaving external clock mode
+      led_pattern = 0;
+    }
     if (clocked_by_midi) {
       clocked_by_midi = 0;
       mute = 0;
@@ -286,7 +297,7 @@ inline void HandleTapButton() {
   
   if (switch_state == SWITCH_STATE_JUST_PRESSED) {
     if (parameter == PARAMETER_NONE) {
-      if (clocked_by_midi) {			// toggle mute state
+      if (clocked_by_midi) {		// in clocked_by_midi mode, button toggles mute state
         if (mute) {
           mute = 0;
           led_pattern = 0;
@@ -294,6 +305,11 @@ inline void HandleTapButton() {
           mute = 1;
         }
       } else {
+        if (external_clock == 1) {	// in external clock mode
+          mute = 0;					// the first button press unmutes the outputs
+          led_pattern = 0;
+          external_clock = 2;
+        }
         if (!pattern_generator.tap_tempo()) {
           pattern_generator.Reset();
           /*  no need for the hack (see above)

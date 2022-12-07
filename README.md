@@ -9,7 +9,7 @@ interface. It resets the drum engine when it receives a MIDI Start message
 and uses MIDI Clock messages to advance. However it does not care about 
 MIDI Stop or MIDI Continue messages. If, after pressing stop on your 
 MIDI master device, the master does not cease sending MIDI Clocks 
-(a behaviour quite a few MIDI devices exhibit) Grids will go on 
+(quite a common behaviour) Grids will go on 
 drumming forever.
 
 The "Gritty Grids" firmware improves on this situation by properly 
@@ -38,7 +38,7 @@ interface. It might or might not work. Try at your own risk.
 
 
 ### Flashing the Firmware
-Just use the in-system programmer of your choice (e. g. I use the 
+Use the in-system programmer of your choice (e. g. I use the 
 AVRisp MkII from Atmel) to flash the "gritty-grids.hex" file to 
 the AVR microcontroller on Grids. If you are not familiar with 
 flashing AVR controllers search the web for instructions.
@@ -47,25 +47,26 @@ If you want to go back to the original stock firmware flash
 "grids_original.hex".
 
 
-### User Manual
-Enter the external clocking mode of Grids by turning the tempo knop to 
-its minimum position. After receiving a  MIDI Start or MIDI Continue 
+### Gritty Grids User Manual
+Enter the external clocking mode by turning the tempo knop to 
+its minimum position, thus enabling Grids to be clocked by either external clock pulses or by MIDI messages. After receiving a  MIDI Start or MIDI Continue 
 message Grids switches into a "clocked_by_midi" mode. In this mode its 
 drum engine advances with every MIDI clock message. External clocking 
 via the clock input jack is disabled.
 
 Receiving a MIDI Start message resets the Grids drum engine whereas 
-MIDI continue resumes from the current state.
+MIDI continue resumes from the current state it was left.
 
-As an external reset in "clocked_by_midi" mode or a tapped-in tempo 
+As an external reset in "clocked_by_midi" mode or a manually tapped-in tempo 
 would break the synchronization with the MIDI master device the 
 function of the reset input as well as the TAP/reset button changes. 
 They now assume a "mute" functionality that suppresses all drum and 
 accent outputs. When muted all three output leds will light up 
 permanently.
 
-To leave the "clocked_by_midi" mode, turn the tempo knob to the right 
-to activate internal clocking.
+When entering the external clocking mode (turn the tempo knob fully left) the outputs are muted by default. Press the button to unmute them.
+
+To leave the "clocked_by_midi" mode, turn the tempo knob to the right. This activates internal clocking and unmutes all outputs.
 
 
 ### Other Changes

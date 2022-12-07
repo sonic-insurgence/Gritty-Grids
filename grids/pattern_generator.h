@@ -39,7 +39,7 @@ const uint8_t kNumParts = 3;
 const uint8_t kPulsesPerStep = 3;    // 24 ppqn ; 8 steps per quarter note.
 const uint8_t kStepsPerPattern = 32;
 //const uint8_t kPulseDuration = 8;    // 8 ticks of the main clock. (1 ms triggers)
-const uint8_t kPulseDuration = 40;   // 8 ticks of the main clock. (5 ms triggers)
+const uint8_t kPulseDuration = 42;   // 42 ticks of the main clock. (5 ms triggers)
 
 struct DrumsSettings {
   uint8_t x;
