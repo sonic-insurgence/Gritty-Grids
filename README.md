@@ -48,7 +48,7 @@ If you want to go back to the original stock firmware flash
 
 
 ### Gritty Grids User Manual
-Enter the external clocking mode by turning the tempo knop to 
+Enter the external clocking mode by turning the tempo knob to 
 its minimum position, thus enabling Grids to be clocked by either external clock pulses or by MIDI messages. After receiving a  MIDI Start or MIDI Continue 
 message Grids switches into a "clocked_by_midi" mode. In this mode its 
 drum engine advances with every MIDI clock message. External clocking 
